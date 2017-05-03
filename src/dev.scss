@@ -1,0 +1,37 @@
+*{margin: 0;padding:0;}
+ul,li{list-style: none;}
+
+.hello-react-virtual-input{
+  color:#F00;
+  padding:100px 20px;
+  position: relative;
+
+  input{
+    width:100%;
+    border: 2px solid #000;
+    height:40px;
+    margin-bottom: 10px;
+    &:focus{
+      outline: none;
+    }
+  }
+
+  button{
+    background: #3cc51f;
+    width:100%;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color:#FFF;
+    padding:20px;
+    border: none;
+
+    &:active{
+      background: darken(#3cc51f,10%);
+    }
+
+    &:focus{
+      outline: none;
+    }
+  }
+}

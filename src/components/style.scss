@@ -1,0 +1,57 @@
+$react-virtual-blink-color:#3e82f7;
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@include keyframes(blink){
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: $react-virtual-blink-color;
+  }
+};
+
+.react-virtual-input{
+  font-size:10px;
+  line-height:2em;
+  height:2em;
+  padding:0.6em 3.6em 0.6em 1em;
+  border:1px solid #ccc;
+  position: relative;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  >span{
+    vertical-align: middle;
+    display: inline-block;
+  }
+  &-text{
+    font-size: 1.6em;
+  }
+  &-close{
+    width:12px;
+    position: absolute;
+    top:50%;
+    right:.5em;
+    transform: translateY(-50%);
+  }
+  .blinking-cursor {
+    font-weight: 100;
+    font-size: 2.4em;
+    color: $react-virtual-blink-color;
+    animation: 1s blink step-end infinite;
+  }
+}
+
+
+
+
