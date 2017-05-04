@@ -9,7 +9,6 @@ import closeImg from './close.png';
 export default class extends PureComponent{
   static propTypes = {
     className:PropTypes.string,
-    value:PropTypes.string,
     onClear:PropTypes.func,
   };
 
