@@ -1,10 +1,11 @@
 import './style.scss';
+
 import React,{PureComponent} from 'react';
+
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import closeImg from './close@3x.png';
 import noop from 'noop';
-
-import closeImg from './close.png';
 
 export default class extends PureComponent{
   static propTypes = {
