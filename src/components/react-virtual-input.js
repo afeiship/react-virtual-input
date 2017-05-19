@@ -11,26 +11,27 @@ export default class extends PureComponent{
   static propTypes = {
     className:PropTypes.string,
     onClear:PropTypes.func,
+    maxLength:PropTypes.number,
+    value:PropTypes.string,
   };
 
-  constructor(props){
-    super(props);
-    this.state = {
-      value:props.value
-    };
-  }
+  static defaultProps = {
+    maxLength:1000000
+  };
 
-  componentWillReceiveProps(nextProps){
-    this.setState(nextProps);
+  getSlicedValue(){
+    const {maxLength,value} = this.props;
+    console.log(value.slice(0,maxLength));
+    return value.slice(0,maxLength);
   }
 
   render(){
     const {className,value,onClear,...props} = this.props;
     return (
       <div {...props} className={classNames('react-virtual-input',className)}>
-        <span className="react-virtual-input-text">{this.state.value}</span>
+        <span className="react-virtual-input-text">{this.getSlicedValue()}</span>
         <span className="blinking-cursor">|</span>
-        {!!this.state.value && <img className="react-virtual-input-close" onClick={onClear} src={closeImg} />}
+        {!!value && <img className="react-virtual-input-close" onClick={onClear} src={closeImg} />}
       </div>
     );
   }

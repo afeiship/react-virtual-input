@@ -1,6 +1,6 @@
 import './dev.scss';
-import ReactVirtualInput from './main';
 
+import ReactVirtualInput from './main';
 
 class App extends React.Component{
   state = {
@@ -18,7 +18,7 @@ class App extends React.Component{
     return (
       <div className="hello-react-virtual-input">
           <input type="text" value={this.state.value} onChange={this._change}/>
-          <ReactVirtualInput onClear={this._clear} value={this.state.value} />
+          <ReactVirtualInput onClear={this._clear} maxLength={10} value={this.state.value} />
       </div>
     );
   }
