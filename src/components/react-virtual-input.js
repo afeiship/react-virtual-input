@@ -21,7 +21,6 @@ export default class extends PureComponent{
 
   getSlicedValue(){
     const {maxLength,value} = this.props;
-    console.log(value.slice(0,maxLength));
     return value.slice(0,maxLength);
   }
 
