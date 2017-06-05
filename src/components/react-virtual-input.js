@@ -13,23 +13,57 @@ export default class extends PureComponent{
     onClear:PropTypes.func,
     maxLength:PropTypes.number,
     value:PropTypes.string,
+    focused:PropTypes.bool,
+    onFocus:PropTypes.func,
+    onBlur:PropTypes.func,
   };
 
   static defaultProps = {
-    maxLength:1000000
+    maxLength:1000000,
+    focused:false,
+    onFocus:noop,
+    onBlur:noop
   };
 
+  constructor(props){
+    super(props);
+    this.state = {
+      focused:props.focused
+    };
+  }
+
+  componentWillMount(){
+    const {onBlur} = this.props;
+    document.addEventListener('click',()=>{
+      this.setState({ focused:false });
+      onBlur(this);
+    },true);
+  }
+
+  componentWillReceiveProps(nextProps){
+    const { focused } = nextProps;
+    if(focused !== this.state.focused){
+      this.setState({ focused });
+    }
+  }
+
   getSlicedValue(){
-    const {maxLength,value} = this.props;
+    const { maxLength,value } = this.props;
     return value.slice(0,maxLength);
   }
 
+  _onClick = (inEvent) => {
+    const {focused,onFocus} = this.props;
+    this.setState({ focused:true });
+    onFocus(this);
+  };
+
   render(){
-    const {className,value,onClear,...props} = this.props;
+    const {className,value,onClear,focused,...props} = this.props;
     return (
-      <div {...props} className={classNames('react-virtual-input',className)}>
+      <div {...props} onClick={this._onClick} className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text">{this.getSlicedValue()}</span>
-        <span className="blinking-cursor">|</span>
+        {this.state.focused && <span className="blinking-cursor">|</span>}
         {!!value && <span className="react-virtual-input-close" onClick={onClear} ><img src={closeImg} /></span>}
       </div>
     );
