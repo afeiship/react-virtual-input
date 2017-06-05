@@ -38,11 +38,25 @@ $react-virtual-blink-color:#3e82f7;
     font-size: 1.6em;
   }
   &-close{
-    width:12px;
+    display: block;
+    width:14px;
+    height:14px;
     position: absolute;
     top:50%;
     right:.5em;
     transform: translateY(-50%);
+    &::after{
+      content:'';
+      display: block;
+      position: absolute;
+      top:-0.6em;
+      right:-0.6em;
+      bottom:-0.6em;
+      left:-0.6em;
+    }
+    >img{
+      width:100%;
+    }
   }
   .blinking-cursor {
     font-weight: 100;

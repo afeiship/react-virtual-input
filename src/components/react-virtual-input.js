@@ -31,7 +31,7 @@ export default class extends PureComponent{
       <div {...props} className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text">{this.getSlicedValue()}</span>
         <span className="blinking-cursor">|</span>
-        {!!value && <img className="react-virtual-input-close" onClick={onClear} src={closeImg} />}
+        {!!value && <span className="react-virtual-input-close" onClick={onClear} ><img src={closeImg} /></span>}
       </div>
     );
   }
