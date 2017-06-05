@@ -30,6 +30,13 @@ $react-virtual-blink-color:#3e82f7;
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  &::after{
+    content:'';
+    height:100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
   >span{
     vertical-align: middle;
     display: inline-block;
@@ -58,6 +65,7 @@ $react-virtual-blink-color:#3e82f7;
     }
     >img{
       width:100%;
+      position: absolute;
     }
   }
 
