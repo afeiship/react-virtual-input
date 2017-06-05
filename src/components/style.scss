@@ -11,10 +11,10 @@ $react-virtual-blink-color:#3e82f7;
 
 @include keyframes(blink){
   from, to {
-    color: transparent;
+    border-color: transparent;
   }
   50% {
-    color: $react-virtual-blink-color;
+    border-color: $react-virtual-blink-color;
   }
 };
 
@@ -34,9 +34,11 @@ $react-virtual-blink-color:#3e82f7;
     vertical-align: middle;
     display: inline-block;
   }
+
   &-text{
     font-size: 1.6em;
   }
+
   &-close{
     display: block;
     width:14px;
@@ -58,11 +60,15 @@ $react-virtual-blink-color:#3e82f7;
       width:100%;
     }
   }
+
   .blinking-cursor {
     font-weight: 100;
     font-size: 2.4em;
+    margin-left:.2em;
+    height:100%;
+    border-left:2px solid $react-virtual-blink-color;
     color: $react-virtual-blink-color;
-    animation: 0.8s blink step-end infinite;
+    animation: 1s blink step-end infinite;
   }
 }
 

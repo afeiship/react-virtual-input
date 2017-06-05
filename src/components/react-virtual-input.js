@@ -63,7 +63,7 @@ export default class extends PureComponent{
     return (
       <div {...props} onClick={this._onClick} className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text">{this.getSlicedValue()}</span>
-        {this.state.focused && <span className="blinking-cursor">|</span>}
+        {this.state.focused && <span className="blinking-cursor" />}
         {!!value && <span className="react-virtual-input-close" onClick={onClear} ><img src={closeImg} /></span>}
       </div>
     );
