@@ -19,7 +19,7 @@ export default class extends PureComponent{
   };
 
   static defaultProps = {
-    maxLength:1000000,
+    maxLength:Number.MAX_SAFE_INTEGER,
     focused:false,
     onFocus:noop,
     onBlur:noop
