@@ -72,11 +72,14 @@ $react-virtual-blink-color:#3e82f7;
   .blinking-cursor {
     font-weight: 100;
     font-size: 2.4em;
-    margin-left:.2em;
     height:100%;
     border-left:2px solid $react-virtual-blink-color;
     color: $react-virtual-blink-color;
     animation: 1s blink step-end infinite;
+
+    &[data-value=true]{
+      margin-left:.2em;
+    }
   }
 }
 

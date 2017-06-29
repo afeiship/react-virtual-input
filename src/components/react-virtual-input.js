@@ -60,11 +60,12 @@ export default class extends PureComponent{
 
   render(){
     const {className,value,onClear,focused,...props} = this.props;
+    const hasValue = !!value;
     return (
       <div {...props} onClick={this._onClick} className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text">{this.getSlicedValue()}</span>
-        {this.state.focused && <span className="blinking-cursor" />}
-        {!!value && <span className="react-virtual-input-close" onClick={onClear} ><img src={closeImg} /></span>}
+        {this.state.focused && <span data-value={hasValue} className="blinking-cursor" />}
+        {hasValue && <span className="react-virtual-input-close" onClick={onClear} ><img src={closeImg} /></span>}
       </div>
     );
   }
