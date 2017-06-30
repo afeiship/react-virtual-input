@@ -36,6 +36,7 @@ export default class extends PureComponent{
   componentWillMount(){
     const {onBlur} = this.props;
     document.addEventListener('click',()=>{
+      console.log('doc...');
       this.setState({ focused:false });
       onBlur(this);
     },false);
@@ -55,18 +56,24 @@ export default class extends PureComponent{
 
   stop(inEvent){
     inEvent.nativeEvent.stopImmediatePropagation();
+    inEvent.nativeEvent.stopPropagation();
   }
 
   _onClick = (inEvent) => {
     const {focused,onFocus} = this.props;
+    const { clear,root } = this.refs;
+    console.log(this.props.value);
     this.setState({ focused:true });
     this.stop(inEvent);
-    onFocus(this);
+    if(inEvent.target === root){
+      onFocus(this);
+    }
   };
 
   _onClear = inEvent => {
     const {onClear} = this.props;
     this.stop(inEvent);
+    console.log('clear');
     onClear(inEvent);
   };
 
@@ -74,10 +81,10 @@ export default class extends PureComponent{
     const {className,value,onClear,focused,...props} = this.props;
     const hasValue = !!value;
     return (
-      <div {...props} onClick={this._onClick} className={classNames('react-virtual-input',className)}>
+      <div {...props} onClick={this._onClick} ref='root' className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text">{this.getSlicedValue()}</span>
         {this.state.focused && <span data-value={hasValue} className="blinking-cursor" />}
-        {hasValue && <span className="react-virtual-input-close" onClick={this._onClear} ><img src={closeImg} /></span>}
+        {hasValue && <span ref="clear" className="react-virtual-input-close" onClick={this._onClear} ><img src={closeImg} /></span>}
       </div>
     );
   }
