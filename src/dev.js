@@ -14,11 +14,15 @@ class App extends React.Component{
     this.setState({value:''})
   }
 
+  _toPwd (inValue){
+    return inValue.replace(/\w/g,'*');
+  }
+
   render(){
     return (
       <div className="hello-react-virtual-input">
           <input type="text" value={this.state.value} onChange={this._change}/>
-          <ReactVirtualInput onClear={this._clear} maxLength={100} value={this.state.value} />
+          <ReactVirtualInput onClear={this._clear} filter={this._toPwd.bind(this)} maxLength={100} value={this.state.value} />
       </div>
     );
   }

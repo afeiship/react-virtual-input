@@ -13,6 +13,7 @@ export default class extends PureComponent{
     onClear:PropTypes.func,
     maxLength:PropTypes.number,
     value:PropTypes.string,
+    filter: PropTypes.func,
     focused:PropTypes.bool,
     onFocus:PropTypes.func,
     onBlur:PropTypes.func
@@ -21,6 +22,9 @@ export default class extends PureComponent{
   static defaultProps = {
     maxLength:Number.MAX_VALUE,
     focused:false,
+    filter: function(inValue){
+      return inValue;
+    },
     onFocus:noop,
     onBlur:noop,
     onClear:noop,
@@ -49,8 +53,8 @@ export default class extends PureComponent{
   }
 
   getSlicedValue(){
-    const { maxLength,value } = this.props;
-    return value.slice(0,maxLength);
+    const { maxLength,value,filter } = this.props;
+    return filter(value.slice(0,maxLength));
   }
 
   stop(inEvent){
