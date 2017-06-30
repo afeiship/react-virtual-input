@@ -15,14 +15,15 @@ export default class extends PureComponent{
     value:PropTypes.string,
     focused:PropTypes.bool,
     onFocus:PropTypes.func,
-    onBlur:PropTypes.func,
+    onBlur:PropTypes.func
   };
 
   static defaultProps = {
     maxLength:Number.MAX_VALUE,
     focused:false,
     onFocus:noop,
-    onBlur:noop
+    onBlur:noop,
+    onClear:noop,
   };
 
   constructor(props){
