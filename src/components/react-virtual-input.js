@@ -80,7 +80,7 @@ export default class extends PureComponent{
   };
 
   render(){
-    const {className,value,onClear,focused,placeholder,...props} = this.props;
+    const {className,value,onClear,focused,placeholder,filter,...props} = this.props;
     const hasValue = !!value;
     return (
       <div {...props} onClick={this._onClick} ref='root' className={classNames('react-virtual-input',className)}>
