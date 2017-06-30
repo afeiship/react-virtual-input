@@ -36,7 +36,6 @@ export default class extends PureComponent{
   componentWillMount(){
     const {onBlur} = this.props;
     document.addEventListener('click',()=>{
-      console.log('doc...');
       this.setState({ focused:false });
       onBlur(this);
     },false);
@@ -62,7 +61,6 @@ export default class extends PureComponent{
   _onClick = (inEvent) => {
     const {focused,onFocus} = this.props;
     const { clear,root } = this.refs;
-    console.log(this.props.value);
     this.setState({ focused:true });
     this.stop(inEvent);
     if(inEvent.target === root){
@@ -73,7 +71,6 @@ export default class extends PureComponent{
   _onClear = inEvent => {
     const {onClear} = this.props;
     this.stop(inEvent);
-    console.log('clear');
     onClear(inEvent);
   };
 
