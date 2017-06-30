@@ -46,6 +46,12 @@ $react-virtual-blink-color:#3e82f7;
     font-size: 1.6em;
   }
 
+  &-placeholder{
+    position: absolute;
+    color:#ddd;
+    font-size: 1.4em;
+  }
+
   &-close{
     display: block;
     width:14px;
@@ -75,6 +81,8 @@ $react-virtual-blink-color:#3e82f7;
     height:100%;
     border-left:2px solid $react-virtual-blink-color;
     color: $react-virtual-blink-color;
+    position: relative;
+    z-index: 2;
     animation: 1s blink step-end infinite;
 
     &[data-value=true]{
