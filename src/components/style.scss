@@ -50,6 +50,8 @@ $react-virtual-blink-color:#3e82f7;
     position: absolute;
     color:#ddd;
     font-size: 1.4em;
+    top:50%;
+    transform: translateY(-50%);
   }
 
   &-close{
