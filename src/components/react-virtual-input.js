@@ -65,9 +65,9 @@ export default class extends PureComponent{
   _onClick = (inEvent) => {
     const {focused,onFocus} = this.props;
     const { clear,root } = this.refs;
-    this.setState({ focused:true });
     this.stop(inEvent);
     if(inEvent.target === root){
+      this.setState({ focused:true });
       onFocus(this);
     }
   };
@@ -85,7 +85,7 @@ export default class extends PureComponent{
       <div {...props} onClick={this._onClick} ref='root' className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text">{this.getSlicedValue()}</span>
         {this.state.focused && <span data-value={hasValue} className="blinking-cursor" />}
-        {hasValue && <span ref="clear" className="react-virtual-input-close" onClick={this._onClear} ><img src={closeImg} /></span>}
+        {hasValue && <span className="react-virtual-input-close" onClick={this._onClear} ><img src={closeImg} /></span>}
       </div>
     );
   }
