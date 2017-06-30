@@ -37,7 +37,7 @@ export default class extends PureComponent{
     document.addEventListener('click',()=>{
       this.setState({ focused:false });
       onBlur(this);
-    },true);
+    },false);
   }
 
   componentWillReceiveProps(nextProps){
@@ -52,10 +52,21 @@ export default class extends PureComponent{
     return value.slice(0,maxLength);
   }
 
+  stop(inEvent){
+    inEvent.nativeEvent.stopImmediatePropagation();
+  }
+
   _onClick = (inEvent) => {
     const {focused,onFocus} = this.props;
     this.setState({ focused:true });
+    this.stop(inEvent);
     onFocus(this);
+  };
+
+  _onClear = inEvent => {
+    const {onClear} = this.props;
+    this.stop(inEvent);
+    onClear(inEvent);
   };
 
   render(){
@@ -65,7 +76,7 @@ export default class extends PureComponent{
       <div {...props} onClick={this._onClick} className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text">{this.getSlicedValue()}</span>
         {this.state.focused && <span data-value={hasValue} className="blinking-cursor" />}
-        {hasValue && <span className="react-virtual-input-close" onClick={onClear} ><img src={closeImg} /></span>}
+        {hasValue && <span className="react-virtual-input-close" onClick={this._onClear} ><img src={closeImg} /></span>}
       </div>
     );
   }
