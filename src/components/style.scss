@@ -48,6 +48,7 @@ $react-virtual-blink-color:#3e82f7;
 
   &-placeholder{
     position: absolute;
+    z-index:-1;
     color:#ddd;
     font-size: 1.4em;
     top:50%;
