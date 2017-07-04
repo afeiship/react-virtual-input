@@ -10,6 +10,7 @@ import noop from 'noop';
 export default class extends PureComponent{
   static propTypes = {
     className:PropTypes.string,
+    clearable: PropTypes.bool,
     onClear:PropTypes.func,
     maxLength:PropTypes.number,
     value:PropTypes.string,
@@ -21,8 +22,9 @@ export default class extends PureComponent{
   };
 
   static defaultProps = {
-    maxLength:Number.MAX_VALUE,
-    focused:false,
+    maxLength: Number.MAX_VALUE,
+    clearable: true,
+    focused: false,
     filter: function(inValue){
       return inValue;
     },
@@ -79,14 +81,14 @@ export default class extends PureComponent{
   };
 
   render(){
-    const {className,value,onClear,focused,placeholder,filter,...props} = this.props;
+    const {className,value,clearable,onClear,focused,placeholder,filter,...props} = this.props;
     const hasValue = !!value;
     return (
       <div {...props} onClick={this._onClick} ref='root' className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text" ref='text'>{this.getSlicedValue()}</span>
         {!hasValue && <span className="react-virtual-input-placeholder">{placeholder}</span>}
         {this.state.focused && <span data-value={hasValue} className="blinking-cursor" />}
-        {hasValue && <span className="react-virtual-input-close" onClick={this._onClear} ><img src={closeImg} /></span>}
+        {clearable && hasValue && <span className="react-virtual-input-close" onClick={this._onClear} ><img src={closeImg} /></span>}
       </div>
     );
   }
