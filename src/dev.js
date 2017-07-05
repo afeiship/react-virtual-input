@@ -22,7 +22,7 @@ class App extends React.Component{
     return (
       <div className="hello-react-virtual-input">
           <input type="text" value={this.state.value} onChange={this._change}/>
-          <ReactVirtualInput onClear={this._clear} placeholder="input your text.." filter={this._toPwd.bind(this)} maxLength={100} value={this.state.value} />
+          <ReactVirtualInput clearable={false} onClear={this._clear} placeholder="input your text.." filter={this._toPwd.bind(this)} maxLength={100} value={this.state.value} />
       </div>
     );
   }

@@ -86,7 +86,12 @@ export default class extends PureComponent{
     const {className,value,clearable,blinkable,onClear,focused,placeholder,filter,...props} = this.props;
     const hasValue = !!value;
     return (
-      <div {...props} onClick={this._onClick} ref='root' data-focuced={focused} className={classNames('react-virtual-input',className)}>
+      <div {...props} ref='root'
+          onClick={this._onClick}
+          data-focuced={focused}
+          data-clearable={clearable}
+          data-blinkable={blinkable}
+          className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text" ref='text'>{this.getSlicedValue()}</span>
         {!hasValue && <span className="react-virtual-input-placeholder">{placeholder}</span>}
         {blinkable && this.state.focused && <span data-value={hasValue} className="blinking-cursor" />}
