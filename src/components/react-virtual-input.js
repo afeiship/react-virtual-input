@@ -71,7 +71,7 @@ export default class extends PureComponent{
     const {focused,onFocus} = this.props;
     const { clear,root,text } = this.refs;
     this.stop(inEvent);
-    if(inEvent.target === root || inEvent.target === text){
+    if(root.contains(inEvent.target) && inEvent.target !== clear){
       this.setState({ focused:true },onFocus);
     }
   };
