@@ -17,9 +17,7 @@ export default class extends PureComponent{
     value:PropTypes.string,
     placeholder:PropTypes.string,
     filter: PropTypes.func,
-    focused:PropTypes.bool,
-    onFocus:PropTypes.func,
-    onBlur:PropTypes.func
+    focused:PropTypes.bool
   };
 
   static defaultProps = {
@@ -31,7 +29,6 @@ export default class extends PureComponent{
       return inValue;
     },
     onFocus:noop,
-    onBlur:noop,
     onClear:noop,
   };
 
@@ -40,13 +37,6 @@ export default class extends PureComponent{
     this.state = {
       focused:props.focused
     };
-  }
-
-  componentWillMount(){
-    const {onBlur} = this.props;
-    document.addEventListener('click',()=>{
-      onBlur(this);
-    },false);
   }
 
   componentWillReceiveProps(nextProps){
