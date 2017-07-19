@@ -17,7 +17,8 @@ export default class extends PureComponent{
     value:PropTypes.string,
     placeholder:PropTypes.string,
     filter: PropTypes.func,
-    focused:PropTypes.bool
+    focused:PropTypes.bool,
+    onFocus: PropTypes.func,
   };
 
   static defaultProps = {
@@ -25,26 +26,13 @@ export default class extends PureComponent{
     clearable: true,
     blinkable: true,
     focused: false,
+    onFocus: noop,
     filter: function(inValue){
       return inValue;
     },
-    onFocus:noop,
     onClear:noop,
   };
 
-  constructor(props){
-    super(props);
-    this.state = {
-      focused:props.focused
-    };
-  }
-
-  componentWillReceiveProps(nextProps){
-    const { focused } = nextProps;
-    if(focused !== this.state.focused){
-      this.setState({ focused });
-    }
-  }
 
   getSlicedValue(){
     const { maxLength,value,filter } = this.props;
@@ -61,7 +49,7 @@ export default class extends PureComponent{
     const { clear,root,text } = this.refs;
     this.stop(inEvent);
     if(root.contains(inEvent.target) && inEvent.target !== clear){
-      this.setState({ focused:true },onFocus);
+      onFocus(inEvent);
     }
   };
 
@@ -83,7 +71,7 @@ export default class extends PureComponent{
           className={classNames('react-virtual-input',className)}>
         <span className="react-virtual-input-text" ref='text'>{this.getSlicedValue()}</span>
         {!hasValue && <span className="react-virtual-input-placeholder">{placeholder}</span>}
-        {blinkable && this.state.focused && <span data-value={hasValue} className="blinking-cursor" />}
+        {blinkable && focused && <span data-value={hasValue} className="blinking-cursor" />}
         {clearable && hasValue && <span className="react-virtual-input-close" onClick={this._onClear} ><img src={closeImg} /></span>}
       </div>
     );
