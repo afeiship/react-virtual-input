@@ -45,7 +45,6 @@ export default class extends PureComponent{
   componentWillMount(){
     const {onBlur} = this.props;
     document.addEventListener('click',()=>{
-      this.setState({ focused:false });
       onBlur(this);
     },false);
   }
